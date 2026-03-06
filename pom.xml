@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<!-- Upgraded to 3.3.3: Requires Java 17+ and Jakarta EE 10 -->
+		<version>3.3.3</version>
+		<relativePath />
+	</parent>
+
+	<groupId>com.markcus</groupId>
+	<artifactId>mark-ecommerce-spring-boot</artifactId>
+	<version>0.1.0</version>
+	<name>mark-ecommerce-spring-boot</name>
+	<description>Modern ecommerce platform built with Spring Cloud microservices architecture</description>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- Spring Boot 3.x requires a minimum of Java 17 -->
+		<java.version>17</java.version>
+		<!-- Compatibility: Spring Cloud 2023.0.x is required for Boot 3.3.x -->
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
+		<testcontainers.version>1.19.0</testcontainers.version>
+	</properties>
+
+	<dependencies>
+		<!-- Core Starters -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Resilience & Observability -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
+		<!--
+			Migration Note: Spring Cloud Sleuth has been removed in Boot 3.x.
+			Replacing with Micrometer Tracing + Bridge to Zipkin.
+		-->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+
+		<!-- Development Tools -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!--
+			Documentation: Springdoc v2 is required for Spring Boot 3 (Jakarta EE support)
+		-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers-bom</artifactId>
+				<version>${testcontainers.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>service-discovery</module>
+		<module>cloud-config</module>
+		<module>api-gateway</module>
+		<module>proxy-client</module>
+		<module>user-service</module>
+		<module>product-service</module>
+		<module>favourite-service</module>
+		<module>order-service</module>
+		<module>shipping-service</module>
+		<module>payment-service</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<finalName>${project.artifactId}-v${project.version}</finalName>
+	</build>
+</project>
