@@ -1,0 +1,48 @@
+
+server:
+  servlet:
+    context-path: /platform-user-management
+  port: ${SERVER_PORT:8700}
+
+spring:
+  zipkin:
+    base-url: ${DISTRIBUTED_TRACING_URL:http://localhost:9411/}
+  config:
+    import: ${CONFIG_SERVER_URL:optional:configserver:http://localhost:9296}
+  application:
+    name: PLATFORM-USER-MANAGEMENT
+  profiles:
+    active:
+    - production
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      platformUserManagement:
+        register-health-indicator: true
+        event-consumer-buffer-size: 15
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 60
+        minimum-number-of-calls: 8
+        permitted-number-of-calls-in-half-open-state: 5
+        sliding-window-size: 20
+        wait-duration-in-open-state: 10s
+        sliding-window-type: TIME_BASED
+        slow-call-duration-threshold: 2s
+        slow-call-rate-threshold: 50
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
+
+
+
+
