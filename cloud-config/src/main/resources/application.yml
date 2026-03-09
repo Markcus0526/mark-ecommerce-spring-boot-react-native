@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/SelimHorri/cloud-config-server
+          uri: https://github.com/Markcus0526/mark-ecommerce-spring-boot-config
           clone-on-start: true
 
 resilience4j:
