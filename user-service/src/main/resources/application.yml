@@ -1,7 +1,7 @@
 
 server:
   servlet:
-    context-path: /platform-user-management
+    context-path: /user-service
   port: ${SERVER_PORT:8700}
 
 spring:
