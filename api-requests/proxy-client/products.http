@@ -1,2 +1,5 @@
-### GET request to example server
+### GET request to products
 GET http://localhost:8080/app/api/products
+Content-Type: application/json
+
+###

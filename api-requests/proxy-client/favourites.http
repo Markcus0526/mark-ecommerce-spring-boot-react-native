@@ -1,4 +1,5 @@
-### GET request to proxy-client
+### GET request to favourites
 GET http://localhost:8080/app/api/favourites
 Content-Type: application/json
 
+###

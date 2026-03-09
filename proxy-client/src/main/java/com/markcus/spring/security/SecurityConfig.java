@@ -46,6 +46,9 @@ public class SecurityConfig { // 1. REMOVED 'extends WebSecurityConfigurerAdapte
 						.requestMatchers("/api/carts/**").permitAll()
 						.requestMatchers("/api/orders/**").permitAll()
 						.requestMatchers("/api/favourites/**").permitAll()
+						.requestMatchers("/api/credentials/**").permitAll()
+						.requestMatchers("/api/addresses/**").permitAll()
+						.requestMatchers("/api/verificationTokens/**").permitAll()
 						.requestMatchers("/api/**", "/app/api/**")
 						.hasAnyAuthority(RoleBasedAuthority.ROLE_ADMIN.name(),
 								RoleBasedAuthority.ROLE_USER.name())

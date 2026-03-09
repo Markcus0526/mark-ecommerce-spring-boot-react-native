@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(value = {"/api/addresseses"})
+@RequestMapping(value = {"/api/addresses"})
 @Slf4j
 @RequiredArgsConstructor
 public class AddressResource {
