@@ -1,4 +1,5 @@
-### POST request to proxy-client
+### POST request to orders
 GET http://localhost:8080/app/api/orders
 Content-Type: application/json
 
+###

@@ -1,4 +1,5 @@
-### POST request to proxy-client
+### POST request to shippings
 GET http://localhost:8080/app/api/shippings
 Content-Type: application/json
 
+###
