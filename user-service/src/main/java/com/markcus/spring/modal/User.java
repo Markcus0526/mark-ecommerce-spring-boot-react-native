@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = {"addresses", "credential"})
+@EqualsAndHashCode(callSuper = true, exclude = {"address", "credential"})
 @Data
 @Builder
 public final class User extends AbstractMappedEntity implements Serializable {
